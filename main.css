@@ -1,0 +1,134 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style: none;
+}
+body,html{
+    width: 100%;
+    height:100%;
+    position: relative;
+    background: #dfdfdf;
+    overflow: hidden;
+}
+
+
+#wrap{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+#bg{
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+}
+#textBoxWrap{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.textBox{
+    width: 280px;
+    text-indent: 8px;
+    border: 2px solid #fff;
+    letter-spacing:1px;
+    position: absolute;
+    outline: none;
+}
+
+
+#toggle{
+    position: absolute;
+    left: -35px;
+    width: 15px;
+    padding: 8px 10px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-right: 0;
+    font-size: 14px;
+    cursor: pointer;
+    color: #000;
+    background: #fff;
+    top: 30%;
+}
+
+
+#textPanelWrap{
+    width: 300px;
+    height: 100%;
+    background: #fff;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 9999999999999;
+    box-sizing: border-box;
+}
+
+#textPanel_t{
+    padding:8px;
+    border-bottom: 1px solid #ccc;
+}
+#textPanel_t button{
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #dcdfe6;
+    color: #606266;
+    -webkit-appearance: none;
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    margin: 0;
+    transition: .1s;
+    font-weight: 500;
+    padding: 6px 12px;
+    margin-top: 6px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+
+
+#textPanel_b{
+    margin-top: 10px;
+}
+#textPanel_b   li{
+    margin-top: 10px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+#textPanel_b   li label{
+    padding:0 6px;
+}
+
+#textPanel_b input{
+    -webkit-appearance: none;
+    background-color: #fff;
+    background-image: none;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    box-sizing: border-box;
+    color: #606266;
+    text-indent: 8px;
+    display: inline-block;
+    font-size: inherit;
+    height: 30px;
+    line-height: 30px;
+    outline: none;
+    padding: 0 ;
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+}

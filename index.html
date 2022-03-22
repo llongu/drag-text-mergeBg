@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"  href="./main.css"></link>
+</head>
+<body>
+        <div id="wrap">
+          <img id='bg' src="./bg.jpeg" alt="">
+          <div id="textBoxWrap"></div>
+        </div>
+
+        <div id="textPanelWrap">
+          <div id="toggle">收起</div>
+          <div id="textPanel_t">
+              <button id="addTextBox">新增文本</button>
+              <button id="delTextBox">删除文本</button>
+              <button id="preview">预览</button>
+              <button id="save">保存</button>
+              <span style="font-size:14px">背景大小:</span>
+              <select  id="changeBox">
+                <option value="1920x1080">1920x1080</option>
+                <option value="800x800">800x800</option>
+                <option value="500x300">500x300</option>
+              </select>
+          </div>
+           
+        </div>
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</script>
+<script  type="module">
+import  Main from './Main.js'
+
+const main=new Main().init()
+
+document.getElementById('addTextBox').addEventListener('click',()=>{
+    main.addTextBox()
+})
+document.getElementById('delTextBox').addEventListener('click',()=>{
+    main.delTextBox()
+})
+
+
+
+document.getElementById('preview').addEventListener('click',()=>{
+  
+  document.getElementById('textPanelWrap').style.opacity=0
+  const textBox=document.getElementsByClassName('textBox')
+  for(let i=0;i<textBox.length;i++){
+    textBox[i].style.border='none'
+  }
+  html2canvas(document.getElementById('wrap'),{
+      backgroundColor: null,
+      scale:window.devicePixelRatio
+    }).then((canvas) => {
+      let dataURL = canvas.toDataURL("image/png");
+      const img = new Image();
+      img.src = dataURL;
+      const newWin = window.open("", "_blank");
+      newWin.document.write(img.outerHTML);
+      newWin.document.title = "效果图"
+      newWin.document.close();
+
+      for(let i=0;i<textBox.length;i++){
+        textBox[i].style.border='2px solid #fff'
+      }
+     document.getElementById('textPanelWrap').style.opacity=1
+    });
+})
+
+
+document.getElementById('save').addEventListener('click',()=>{
+  
+  document.getElementById('textPanelWrap').style.opacity=0
+  const textBox=document.getElementsByClassName('textBox')
+  for(let i=0;i<textBox.length;i++){
+    textBox[i].style.border='none'
+  }
+
+  html2canvas(document.getElementById('wrap'),{
+      backgroundColor: null,
+      scale:window.devicePixelRatio
+    }).then((canvas) => {
+      let dataURL = canvas.toDataURL("image/png");
+
+        var img = document.createElement('a');
+        img.href=dataURL
+        img.download = `bg.jpg`;
+        img.click();
+
+      for(let i=0;i<textBox.length;i++){
+        textBox[i].style.border='2px solid #fff'
+      }
+     document.getElementById('textPanelWrap').style.opacity=1
+    });
+})
+
+
+document.getElementById('toggle').addEventListener('click',function(){
+  if(this.innerText==='展开'){
+    this.innerText ='收起'
+    document.getElementById('textPanelWrap').style.width=300+'px'
+
+  }else{
+    this.innerText ='展开'
+    document.getElementById('textPanelWrap').style.width=0
+  }
+})
+
+
+document.getElementById('changeBox').addEventListener('change',function(e){
+  const [w,h]=e.target.value.split('x')
+  document.getElementById('wrap').style.width=w+'px'
+  document.getElementById('wrap').style.height=h+'px'
+})
+
+</script>
+</html>
